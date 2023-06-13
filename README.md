@@ -60,21 +60,21 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 ```
    
-   Install Docker CE on Ubuntu:
+   - Install Docker CE on Ubuntu:
 
 ```
 sudo apt update
 sudo apt install docker-ce -y
 ```
     
-   This has to be done on all the hosts including the master node. After successful installation, start and enable the service.
+   - This has to be done on all the hosts including the master node. After successful installation, start and enable the service.
 
 ```
 sudo systemctl start docker
 sudo systemctl enable docker
  ```
    
-   You can also check if the service is started and is running:
+   - You can also check if the service is started and is running:
 
 ```
 systemctl status docker
@@ -82,7 +82,7 @@ systemctl status docker
    ![docker](https://github.com/kesavakadiyala/k3s/assets/28837244/4c5271ac-5105-4124-928e-25f4aa87d840)
 
    
-   Add your user to Docker group to avoid typing sudo every time you run docker commands.
+   - Add your user to Docker group to avoid typing sudo every time you run docker commands.
 
 ```
 sudo usermod -aG docker ${USER}
