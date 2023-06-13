@@ -41,7 +41,6 @@ We need to prepare our hosts to be able to run k3s in a cluster. Use the followi
   - Make sure you have the hostnames mapped on each node. This is by adding the Private IP and hostname of each node in the /etc/hosts file of each host.
     
     In our setup, it is as follows:
-
   ```
   $ sudo vim /etc/hosts
   172.16.10.3 master
@@ -50,40 +49,40 @@ We need to prepare our hosts to be able to run k3s in a cluster. Use the followi
   ```
 
 ### Step 3: Install Docker on Ubuntu
-The next step is to install docker on on the hosts. As discussed before, Kubernetes is used to manage Docker containers on hybrid cloud infrastructure. Thus we need to have docker up and running on all the nodes before we can setup K3s.
-Add Docker APT repository:
+  - The next step is to install docker on on the hosts. As discussed before, Kubernetes is used to manage Docker containers on hybrid cloud infrastructure. Thus we need to have docker up and running on all the nodes before we can setup K3s.
 
-```
-sudo apt update
-sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-```
-Install Docker CE on Ubuntu:
+    Add Docker APT repository:
+    ```
+    sudo apt update
+    sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    ```
+   
+   Install Docker CE on Ubuntu:
+    ```
+    sudo apt update
+    sudo apt install docker-ce -y
+    ```
+    
+   This has to be done on all the hosts including the master node. After successful installation, start and enable the service.
+    ```
+    sudo systemctl start docker
+    sudo systemctl enable docker
+    ```
+   
+   You can also check if the service is started and is running:
+    ```
+    systemctl status docker
+    ```
+   ![docker](https://github.com/kesavakadiyala/k3s/assets/28837244/4c5271ac-5105-4124-928e-25f4aa87d840)
 
-```
-sudo apt update
-sudo apt install docker-ce -y
-```
-This has to be done on all the hosts including the master node. After successful installation, start and enable the service.
-
-```
-sudo systemctl start docker
-sudo systemctl enable docker
-```
-You can also check if the service is started and is running:
-
-```
-systemctl status docker
-```
-![docker](https://github.com/kesavakadiyala/k3s/assets/28837244/4c5271ac-5105-4124-928e-25f4aa87d840)
-
-Add your user to Docker group to avoid typing sudo every time you run docker commands.
-
-```
-sudo usermod -aG docker ${USER}
-newgrp docker
-```
+   
+   Add your user to Docker group to avoid typing sudo every time you run docker commands.
+    ```
+    sudo usermod -aG docker ${USER}
+    newgrp docker
+    ```
 
 ### Step 4: Setup the Master k3s Node
 In this step, we shall install and prepare the master node. This involves installing the k3s service and starting it.
