@@ -29,6 +29,18 @@ We need to prepare our hosts to be able to run k3s in a cluster. Use the followi
 - Note: Above mentioned ports are specific to this POC alone. For more details on the port requirements of K3s, please refer to this document - Port Requirements | Rancher .
 
 ## Process Overview
+| Steps  | Process |
+|------- | ------- |
+| 1 | Update Ubuntu system |
+| 2 | Map the Hostnames on each node |
+| 3 | Install Docker on Ubuntu  |
+| 4 | Setup the Master k3s Node |
+| 5 | Allow ports on firewall | 
+| 6 | Install k3s on worker nodes and connect them to the master |
+| 7 | Verify that nodes have successfully been added to the cluster |
+| 8 | Deploy helm Addons to K3s |
+| 9 | Exporting kubeconfig and validating helm |
+
 ### Step 1: Update Ubuntu system
   - With your servers installed with Ubuntu, update and upgrade them:
 
