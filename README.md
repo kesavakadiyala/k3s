@@ -5,7 +5,7 @@ This section provides instructions to deploy K3s light weight Kubernetes cluster
 
 ## Architecture:
 
-https://github.com/kesavakadiyala/k3s/assets/28837244/15c83af2-4692-4b40-80dd-b52099e44415
+[https://github.com/kesavakadiyala/k3s/assets/28837244/15c83af2-4692-4b40-80dd-b52099e44415](https://github-production-user-asset-6210df.s3.amazonaws.com/28837244/245425286-15c83af2-4692-4b40-80dd-b52099e44415.png)
 
 
 The above figure shows the difference between K3s server and K3s agent nodes. For more information, see the architecture documentation(https://k3s-io.github.io/docs/architecture).
@@ -184,7 +184,7 @@ kubectl get ns
 ```
 
 
-### Step 8:Deploy helm Addons to K3s
+### Step 8: Deploy helm Addons to K3s
 curl -sfSLO "https://get.helm.sh/helm-v3.10.1-linux-amd64.tar.gz"
 tar -xvzf helm-v3.10.1-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/helm
