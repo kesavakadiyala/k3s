@@ -90,12 +90,12 @@ newgrp docker
 ```
 
 ### Step 4: Setup the Master k3s Node
-In this step, we shall install and prepare the master node. This involves installing the k3s service and starting it.
+- In this step, we shall install and prepare the master node. This involves installing the k3s service and starting it.
 
 ```
 curl -sfL https://get.k3s.io | sh -s - --docker
 ```
-Run the command above to install k3s on the master node. The script installs k3s and starts it automatically.
+- Run the command above to install k3s on the master node. The script installs k3s and starts it automatically.
 
 ```
 [INFO]  Finding release for channel stable
@@ -115,7 +115,7 @@ Run the command above to install k3s on the master node. The script installs k3s
 Created symlink /etc/systemd/system/multi-user.target.wants/k3s.service → /etc/systemd/system/k3s.service.
 [INFO]  systemd: Starting k3s
 ```
-To check if the service installed successfully, you can use:
+- To check if the service installed successfully, you can use:
 
 ```
 systemctl status k3s
@@ -123,7 +123,7 @@ systemctl status k3s
 ![k3s](https://github.com/kesavakadiyala/k3s/assets/28837244/a2592fb5-37d8-44bb-9c9f-1a0699516baa)
 
 
-You can check if the master node is working by :
+- You can check if the master node is working by :
 
 ```
 sudo kubectl get nodes -o wide
@@ -137,38 +137,39 @@ master   Ready    master   3m2s   v1.18.9+k3s1   172.16.10.1   <none>        Ubu
 ```
 
 ### Step 5: Allow ports on firewall
-We need to allow ports that will will be used to communicate between the master and the worker nodes. The ports are 443 and 6443.
+- We need to allow ports that will will be used to communicate between the master and the worker nodes. The ports are 443 and 6443.
 
 ```
 sudo ufw allow 6443/tcp
 sudo ufw allow 443/tcp
 ```
 
-You need to extract a token form the master that will be used to join the nodes to the master.
-On the master node:
+- You need to extract a token form the master that will be used to join the nodes to the master.
+
+  On the master node:
 
 ```
 sudo cat /var/lib/rancher/k3s/server/node-token
 ```
 
-You will then obtain a token that looks like:
+  You will then obtain a token that looks like:
 
 ```
 K1078f2861628c95aa328595484e77f831adc3b58041e9ba9a8b2373926c8b034a3::server:417a7c6f46330b601954d0aaaa1d0f5b
 ```
 
 ### Step 6: Install k3s on worker nodes and connect them to the master
-The next step is to install k3s on the worker nodes. Run the commands below to install k3s on worker nodes:
+- The next step is to install k3s on the worker nodes. Run the commands below to install k3s on worker nodes:
 
 ```
 curl -sfL http://get.k3s.io | K3S_URL=https://<master_IP>:6443 K3S_TOKEN=<join_token> sh -s - --docker
 ```
-Where master_IP is the IP of the master node and join_token is the token obtained from the master. e.g:
+- Where master_IP is the IP of the master node and join_token is the token obtained from the master. e.g:
 
 ```
 curl -sfL http://get.k3s.io | K3S_URL=https://172.16.10.3:6443 K3S_TOKEN=K1078f2861628c95aa328595484e77f831adc3b58041e9ba9a8b2373926c8b034a3::server:417a7c6f46330b601954d0aaaa1d0f5b sh -s - --docker
 ```
-You can verify if the k3s-agent on the worker nodes is running by:
+- You can verify if the k3s-agent on the worker nodes is running by:
 
 ```
 sudo systemctl status k3s-agent
@@ -176,7 +177,7 @@ sudo systemctl status k3s-agent
 ![k3s-agent](https://github.com/kesavakadiyala/k3s/assets/28837244/a161e7a6-dce1-4b52-976b-61e5b04d3c8f)
 
 ### Step 7: Verify that nodes have successfully been added to the cluster
-To verify that our nodes have successfully been added to the cluster, run :
+- To verify that our nodes have successfully been added to the cluster, run :
 
 ```
 sudo kubectl get nodes
@@ -192,7 +193,7 @@ worker01   Ready    <none>   41s   v1.18.9+k3s1   172.16.10.3   <none>        Ub
 ```
 This shows that we have successfully setup our k3s cluster ready to deploy applications to it.
 
-Once k3s cluster installed successfully, Verify namespaces by running below command.
+- Once k3s cluster installed successfully, Verify namespaces by running below command.
 
 ```
 kubectl get ns
@@ -200,23 +201,27 @@ kubectl get ns
 
 
 ### Step 8: Deploy helm Addons to K3s
-curl -sfSLO "https://get.helm.sh/helm-v3.10.1-linux-amd64.tar.gz"
-tar -xvzf helm-v3.10.1-linux-amd64.tar.gz
-sudo mv linux-amd64/helm /usr/local/bin/helm
+- K3s is a lightweight kubernetes tool that doesn’t come packaged with all the tools but you can install them separately.
+
+Download the latest version of Helm commandline tool from this page.
+
+Extract the tar file using tar -xvcf <downloaded-file>
+
+Move the binary file to /usr/local/bin/helm
 
 ```
 curl -sfSLO "https://get.helm.sh/helm-v3.10.1-linux-amd64.tar.gz"
 tar -xvzf helm-v3.10.1-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/helm
 ```
-Check helm version by running below command
+- Check helm version by running below command
 
 ```
 helm version
 ```
 
 ### Step 9: Exporting kubeconfig and validating helm
-Run below command for exporting kubeconfig and list installed helm charts.
+- Run below command for exporting kubeconfig and list installed helm charts.
 
 ```
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
