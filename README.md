@@ -5,7 +5,7 @@ This section provides instructions to deploy K3s light weight Kubernetes cluster
 
 ## Architecture:
 
-!(https://github-production-user-asset-6210df.s3.amazonaws.com/28837244/245425286-15c83af2-4692-4b40-80dd-b52099e44415.png)
+![Architecture](https://github-production-user-asset-6210df.s3.amazonaws.com/28837244/245425286-15c83af2-4692-4b40-80dd-b52099e44415.png)
 
 
 The above figure shows the difference between K3s server and K3s agent nodes. For more information, see the architecture documentation(https://k3s-io.github.io/docs/architecture).
