@@ -30,7 +30,7 @@ We need to prepare our hosts to be able to run k3s in a cluster. Use the followi
 
 ## Process Overview
 ### Step 1: Update Ubuntu system
-  With your servers installed with Ubuntu, update and upgrade them:
+  - With your servers installed with Ubuntu, update and upgrade them:
 
   ```
   sudo apt update
@@ -38,8 +38,8 @@ We need to prepare our hosts to be able to run k3s in a cluster. Use the followi
   ```
 
 ### Step 2: Map the Hostnames on each node
-  Make sure you have the hostnames mapped on each node. This is by adding the Private IP and hostname of each node in the /etc/hosts file of each host.
-  In our setup, it is as follows:
+  - Make sure you have the hostnames mapped on each node. This is by adding the Private IP and hostname of each node in the /etc/hosts file of each host.
+    In our setup, it is as follows:
 
   ```
   $ sudo vim /etc/hosts
