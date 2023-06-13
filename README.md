@@ -14,9 +14,8 @@ Reference: https://k3s.io/
 
 Kubernetes architecture involves a Master node and Worker Nodes. Their functions are as follows:
 
-Master – controls the cluster, API calls, e.t.c.
-
-Workers – these handles the workloads, where the pods are deployed and applications ran. They can be added and removed from the cluster.
+- Master – controls the cluster, API calls, e.t.c.
+- Workers – these handles the workloads, where the pods are deployed and applications ran. They can be added and removed from the cluster.
 
 So to setup a k3s cluster you need at least two hosts, the master node and one workernode. In this post we shall be using one master node and two worker nodes.
 
@@ -76,6 +75,7 @@ You can also check if the service is started and is running:
 ```
 systemctl status docker
 ```
+![docker](https://github.com/kesavakadiyala/k3s/assets/28837244/4c5271ac-5105-4124-928e-25f4aa87d840)
 
 Add your user to Docker group to avoid typing sudo every time you run docker commands.
 
@@ -115,6 +115,9 @@ To check if the service installed successfully, you can use:
 ```
 systemctl status k3s
 ```
+![k3s](https://github.com/kesavakadiyala/k3s/assets/28837244/a2592fb5-37d8-44bb-9c9f-1a0699516baa)
+
+
 You can check if the master node is working by :
 
 ```
@@ -165,6 +168,7 @@ You can verify if the k3s-agent on the worker nodes is running by:
 ```
 sudo systemctl status k3s-agent
 ```
+![k3s-agent](https://github.com/kesavakadiyala/k3s/assets/28837244/a161e7a6-dce1-4b52-976b-61e5b04d3c8f)
 
 ### Step 7: Verify that nodes have successfully been added to the cluster
 To verify that our nodes have successfully been added to the cluster, run :
@@ -213,3 +217,4 @@ Run below command for exporting kubeconfig and list installed helm charts.
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 helm ls
 ```
+![helm-ls](https://github.com/kesavakadiyala/k3s/assets/28837244/36f1c83e-f077-48d1-bf44-37aa41924bbb)
