@@ -30,23 +30,23 @@ We need to prepare our hosts to be able to run k3s in a cluster. Use the followi
 
 ## Process Overview
 ### Step 1: Update Ubuntu system
-    With your servers installed with Ubuntu, update and upgrade them:
+  With your servers installed with Ubuntu, update and upgrade them:
 
-    ```
-    sudo apt update
-    sudo apt -y upgrade && sudo systemctl reboot
-    ```
+  ```
+  sudo apt update
+  sudo apt -y upgrade && sudo systemctl reboot
+  ```
 
 ### Step 2: Map the Hostnames on each node
-Make sure you have the hostnames mapped on each node. This is by adding the Private IP and hostname of each node in the /etc/hosts file of each host.
-In our setup, it is as follows:
+  Make sure you have the hostnames mapped on each node. This is by adding the Private IP and hostname of each node in the /etc/hosts file of each host.
+  In our setup, it is as follows:
 
-```
-$ sudo vim /etc/hosts
-172.16.10.3 master
-172.16.10.4 worker01
-172.16.10.10 worker02
-```
+  ```
+  $ sudo vim /etc/hosts
+  172.16.10.3 master
+  172.16.10.4 worker01
+  172.16.10.10 worker02
+  ```
 
 ### Step 3: Install Docker on Ubuntu
 The next step is to install docker on on the hosts. As discussed before, Kubernetes is used to manage Docker containers on hybrid cloud infrastructure. Thus we need to have docker up and running on all the nodes before we can setup K3s.
