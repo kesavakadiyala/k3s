@@ -5,23 +5,29 @@ This section provides instructions to deploy K3s light weight Kubernetes cluster
 
 ## Architecture:
 
-[https://github.com/kesavakadiyala/k3s/assets/28837244/15c83af2-4692-4b40-80dd-b52099e44415](https://github-production-user-asset-6210df.s3.amazonaws.com/28837244/245425286-15c83af2-4692-4b40-80dd-b52099e44415.png)
+!(https://github-production-user-asset-6210df.s3.amazonaws.com/28837244/245425286-15c83af2-4692-4b40-80dd-b52099e44415.png)
 
 
 The above figure shows the difference between K3s server and K3s agent nodes. For more information, see the architecture documentation(https://k3s-io.github.io/docs/architecture).
+
 Reference: https://k3s.io/
+
 Kubernetes architecture involves a Master node and Worker Nodes. Their functions are as follows:
+
 Master – controls the cluster, API calls, e.t.c.
+
 Workers – these handles the workloads, where the pods are deployed and applications ran. They can be added and removed from the cluster.
+
 So to setup a k3s cluster you need at least two hosts, the master node and one workernode. In this post we shall be using one master node and two worker nodes.
+
 We need to prepare our hosts to be able to run k3s in a cluster. Use the following steps to install k3s cluster on Ubuntu.
 
 
 ## Prerequisites:
-The exercise was performed on an ubuntu machines, so this documents is supported on ubuntu.
-Need to have at least 2 ubuntu instances for Master and worker.
-Once the servers are up and running, check if the ports 80, 443 are opened to public 0.0.0.0/0 and ports 6443, 8472 are opened to subnet cidr range under security group. 
-Note: Above mentioned ports are specific to this POC alone. For more details on the port requirements of K3s, please refer to this document - Port Requirements | Rancher .
+- The exercise was performed on an ubuntu machines, so this documents is supported on ubuntu.
+- Need to have at least 2 ubuntu instances for Master and worker.
+- Once the servers are up and running, check if the ports 80, 443 are opened to public 0.0.0.0/0 and ports 6443, 8472 are opened to subnet cidr range under security group. 
+- Note: Above mentioned ports are specific to this POC alone. For more details on the port requirements of K3s, please refer to this document - Port Requirements | Rancher .
 
 ## Process Overview
 ### Step 1: Update Ubuntu system
