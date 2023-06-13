@@ -30,7 +30,7 @@ We need to prepare our hosts to be able to run k3s in a cluster. Use the followi
 
 ## Process Overview
 | Steps  | Process |
-|------- | ------- |
+| :---: | :---: |
 | 1 | Update Ubuntu system |
 | 2 | Map the Hostnames on each node |
 | 3 | Install Docker on Ubuntu  |
